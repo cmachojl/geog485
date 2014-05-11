@@ -64,7 +64,7 @@
               var wms = new OpenLayers.Layer.WMS( "NYC",
                 "http://nyc.freemap.in/cgi-bin/mapserv?MAP=/www/freemap.in/nyc/map/basemap.map", 
                 {layers: "'openspace,water,buildings,roads'"});
-    map.addLayers(NYC);
+                map.addLayers([NYC]);
        // Google.v3 uses EPSG:900913 as projection, so we have to
             // transform our coordinates
             map.setCenter(new OpenLayers.LonLat(lon,lat).transform(
