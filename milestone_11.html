@@ -57,10 +57,10 @@
 			http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
                  wms = new OpenLayers.Layer.WMS( "NYC",
                 "http://nyc.freemap.in/cgi-bin/mapserv?MAP=/www/freemap.in/nyc/map/basemap.map", 
-                {layers: "'openspace,water,buildings,roads'", version: '1.3.0', transparen: 'TRUE'
-                {isBaseLayer; true});
+                {layers:"openspace,water,buildings,roads", version: '1.3.0', transparent: 'TRUE'
+                {isBaseLayer: true});
                 
-                map.addLayers(NYC);
+                map.addLayer(NYC)
 			 
 			 // ================= OSM Map ====================
             OSMlayer = new OpenLayers.Layer.OSM( "Simple OSM Map");
