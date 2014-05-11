@@ -2,7 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript"
+    src="http://openlayers.org/api/OpenLayers.js"></script>
     <script type="text/javascript">
         
         // define global variables
@@ -11,9 +12,7 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
-        var usImagery;
-        var hazards;
-
+        
         // =============== Initialization function ===================
              
         function init(){
@@ -22,9 +21,11 @@
             );
             
 			 // ===================WMS=======================
+			 //from
+http://basemap.nationalmap.gov/ArcGIS/services/USGSImageryTopo/MapServer/WMSServer?request=GetCapabilities&service=WMS
                 usImagery = new OpenLayers.Layer.WMS( 
             	"US Imagery Tile Service - USGS", 
-            	"http://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
+            	"hhttp://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
             	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: true}
             );   
@@ -51,8 +52,8 @@
 	</style>
   </head>
   <body onload="init()">
-    <h1>Basic OpenLayers Map</h1>
-    <p>Shows the basic use of OpenLayers with a set of WMS layers</p>
+    <h1>Brooklyn, New York</h1>
+    
 	
 	<!-- Map DIV -->
 	<div id="map"></div>
