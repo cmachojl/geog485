@@ -11,14 +11,14 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
-		var usImagery;
+        var usImagery;
         var hazards;
 
         // =============== Initialization function ===================
              
         function init(){
             map = new OpenLayers.Map( 'map',
-			{projection;myProjection}
+			{projection:myProjection}
             );
             
 			 // ===================WMS=======================
