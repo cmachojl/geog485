@@ -66,13 +66,13 @@
         }
 		// =========== USGS National Map WMS ====== 
 
-            // from  countiesLayer = new OpenLayers.Layer.WMS( 
+            from  countiesLayer = new OpenLayers.Layer.WMS( 
         "NYOrthoImagery", 
         "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?",
         {layers: "6", version: '1.3.0', transparent: 'TRUE'},
         {isBaseLayer: false, visibility: false, opacity: .8}
     );
-    map.addLayer(NYOrthoImagery);
+    map.addLayer(NYOrthoImagery)
 			
             
 
