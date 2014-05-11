@@ -15,7 +15,7 @@
         var map;
         var gphy, gmap, ghyb, gsat;                    // Google Maps Layers	
         var OSMlayer;                                  // OpenStreetMap Layer
-        
+        var NYCOrtho;
         
         // =============== Initialization function ===================
         function init(){
@@ -57,7 +57,20 @@
             map.addLayer(OSMlayer);
 
             
-            // Google.v3 uses EPSG:900913 as projection, so we have to
+         
+       //WMS Layer
+       //FROM       	
+         http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
+			
+    NYCOrtho = new OpenLayers.Layer.WMS("NYC Othophotography layer",
+         
+     "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?",
+        {layers: "6", version: '1.3.0', transparent: 'TRUE'},
+        {isBaseLayer: true, visibility: true, opacity: .8}
+    );
+    map.addLayer(NYCOrtho)
+    
+       // Google.v3 uses EPSG:900913 as projection, so we have to
             // transform our coordinates
             map.setCenter(new OpenLayers.LonLat(lon,lat).transform(
                 new OpenLayers.Projection("EPSG:4326"),
@@ -66,24 +79,8 @@
                 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
         }
-        
-        
-        //WMS Layer
- //FROM       	
-http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
-			
-NYCOrtho = new OpenLayers.Layer.WMS("NYC Othophotography layer",
-         
-"http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?",
-        {layers: "6", version: '1.3.0', transparent: 'TRUE'},
-        {isBaseLayer: true, visibility: true, opacity: .8}
-    );
-    map.addLayer(NYCOrtho)
 
-map.addControl(new OpenLayers.Control.LayerSwitcher() );
-            map.addControl(new OpenLayers.Control.Scale() );
-                
-        }		
+		
             
 
 		// =============== End of Initialization Function ============
