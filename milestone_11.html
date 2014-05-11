@@ -52,8 +52,10 @@
             map.addLayers([gphy, gmap, ghyb, gsat]);
 			
 			//WMS Layer
+			//From
+			http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
 			
-		OSMlayer =new OpenLayers.Layer.OSM("NYCOrtho");
+			NYCOrtho = new OpenLayers.Layer.WMS("NYCOrtho");
         "NYCOrtho", 
 "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?",
         {layers: "6", version: '1.3.0', transparent: 'TRUE'},
@@ -95,4 +97,5 @@
     
   </body>
 </html>
+
 
