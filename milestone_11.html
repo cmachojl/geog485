@@ -64,7 +64,7 @@
 			
     NYCOrtho = new OpenLayers.Layer.WMS("NYC Othophotography layer",
          
-     "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS=GetCapabilities",
+     "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=6",
         {layers: "6", version: '1.3.0', transparent: 'TRUE'},
         {isBaseLayer: true, visibility: true, opacity: .8}
     );
