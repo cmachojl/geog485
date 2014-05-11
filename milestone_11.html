@@ -11,36 +11,25 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
-        var usImagery
+		var usImagery;
         var hazards;
 
         // =============== Initialization function ===================
              
         function init(){
-            map = new OpenLayers.Map( 'map',{
-            maxExtent: new OpenLayers.Bounds(
-                -128 * 156543.0339,
-                -128 * 156543.0339,
-                128 * 156543.0339,
-                128 * 156543.0339),
-                maxResolution: 156543.0339,                
-                units: 'm',
-                projection: new OpenLayers.Projection('EPSG:3857'),
-                displayProjection: new OpenLayers.Projection("EPSG:4326"),
-            } );
+            map = new OpenLayers.Map( 'map',
+			{projection;myProjection}
+            );
             
-            
-            
-            // from http://basemap.nationalmap.gov/ArcGIS/services/USGSImageryTopo/MapServer/WMSServer?request=GetCapabilities&service=WMS
-			usImagery = new OpenLayers.Layer.WMS( 
+			 // ===================WMS=======================
+                usImagery = new OpenLayers.Layer.WMS( 
             	"US Imagery Tile Service - USGS", 
             	"http://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
             	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: true}
-            );
-            map.addLayer(usImagery)
-			 // ===================WMS=======================
-              hazards = new OpenLayers.Layer.WMS( "Hazards",
+            );             
+
+			 hazards = new OpenLayers.Layer.WMS( "Hazards",
                 "http://rmgsc.cr.usgs.gov/arcgis/services/nhss_haz/MapServer/WmsServer?", 
                 {layers: "0,1,2,3,4,5,6", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: false, visibility: false, opacity: .8});
