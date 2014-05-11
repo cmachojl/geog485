@@ -55,8 +55,9 @@
             
             // ===================WMS=======================
               transpo = new OpenLayers.Layer.WMS( "transportation",
-                "http://webservices.nationalatlas.gov/wms?SERVICE=WMS", 
-                {layers: "transportation, airports, amtrak, federaltr, ports, rail, roads"}, {isBaseLayer: true});
+                "http://webservices.nationalatlas.gov/wms?", 
+                {layers: "transportation, airports, amtrak, federaltr, ports, rail, roads", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: true, visibility: false, opacity: .8});
                 map.addLayer(transpo);
             
           
