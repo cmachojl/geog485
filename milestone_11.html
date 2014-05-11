@@ -11,6 +11,7 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
+        var usImagery
         var hazards;
 
         // =============== Initialization function ===================
@@ -28,6 +29,16 @@
                 displayProjection: new OpenLayers.Projection("EPSG:4326"),
             } );
             
+            
+            
+            // from http://basemap.nationalmap.gov/ArcGIS/services/USGSImageryTopo/MapServer/WMSServer?request=GetCapabilities&service=WMS
+			usImagery = new OpenLayers.Layer.WMS( 
+            	"US Imagery Tile Service - USGS", 
+            	"http://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
+            	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: true}
+            );
+            map.addLayer(usImagery)
 			 // ===================WMS=======================
               hazards = new OpenLayers.Layer.WMS( "Hazards",
                 "http://rmgsc.cr.usgs.gov/arcgis/services/nhss_haz/MapServer/WmsServer?", 
