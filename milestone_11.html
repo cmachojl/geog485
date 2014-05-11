@@ -55,7 +55,7 @@
 			//WMS Layer
 			//From
 			http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
-                var wms = new OpenLayers.Layer.WMS( "NYC",
+                wms = new OpenLayers.Layer.WMS( "NYC",
                 "http://nyc.freemap.in/cgi-bin/mapserv?MAP=/www/freemap.in/nyc/map/basemap.map", 
                 {layers:"'openspace,water,buildings,roads'"}
                 {isBaseLayer: true});
@@ -64,7 +64,7 @@
 			 
 			 // ================= OSM Map ====================
             OSMlayer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(OSMlayer);
+            map.addLayer(wms);
 
             
             // Google.v3 uses EPSG:900913 as projection, so we have to
