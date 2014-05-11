@@ -17,7 +17,7 @@
         var OSMlayer;                                  // OpenStreetMap Layer
        
         
-        // =============== Initialization function ===================
+       // =============== Initialization function ===================
         function init(){
             map = new OpenLayers.Map( 'map',{
             maxExtent: new OpenLayers.Bounds(
@@ -27,7 +27,7 @@
                 128 * 156543.0339),
                 maxResolution: 156543.0339,                
                 units: 'm',
-                projection: new OpenLayers.Projection('EPSG:4326'),
+                projection: new OpenLayers.Projection('EPSG:3857'),
                 displayProjection: new OpenLayers.Projection("EPSG:4326"),
             } );
             
@@ -50,13 +50,9 @@
             );
 
             map.addLayers([gphy, gmap, ghyb, gsat]);
-			
-			//WMS Layer
-			
-			 
 			 // ================= OSM Map ====================
             OSMlayer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(wms);
+            map.addLayer(OSMlayer);
 
             
             // Google.v3 uses EPSG:900913 as projection, so we have to
@@ -68,11 +64,7 @@
                 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
         }
-        
 		
-			
-            
-
 		// =============== End of Initialization Function ============
         
     </script>
@@ -89,5 +81,3 @@
     
   </body>
 </html>
-
-
