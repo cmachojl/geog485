@@ -64,6 +64,13 @@
                 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
         }
+        	OSMlayer =new OpenLayers.Layer.OSM( "NYCOrtho");
+        	 "NYOrtho", 
+        "http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilites",
+        {layers: "6", version: '1.3.0', transparent: 'TRUE'},
+        {isBaseLayer: false, visibility: false, opacity: .8}
+    );
+    map.addLayer(NYOrtho)
 		
 			
             
