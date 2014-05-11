@@ -13,7 +13,8 @@
         var lat = 40.644992 ;
         var zoom = 12;
         var map;
-        var gphy, gmap, ghyb, gsat;        // Google Maps Layers	
+        var gphy, gmap, ghyb, gsat;        // Google Maps Layers
+        var jpl_wms;
         var OSMlayer;                         
                  // OpenStreetMap Layer
        
@@ -52,6 +53,12 @@
 
             map.addLayers([gphy, gmap, ghyb, gsat]);
             
+            // ===================WMS=======================
+              jpl_wms = new OpenLayers.Layer.WMS( "Population Density 2000",
+                "http://beta.sedac.ciesin.columbia.edu/mapserver/wms/gpw2000", 
+                {layers: "gpw"}, {isBaseLayer: true});
+                map.addLayer(jpl_wms)
+            
           
             
             
@@ -68,6 +75,7 @@
              ), zoom);
                 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
+            map.addControl(new OpenLayers.Control.Scale() );
         }
 		
 		// =============== End of Initialization Function ============
