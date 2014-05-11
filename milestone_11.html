@@ -80,9 +80,10 @@ NYCOrtho = new OpenLayers.Layer.WMS("NYC Othophotography layer",
     );
     map.addLayer(NYCOrtho)
 
- map.addControl(new OpenLayers.Control.LayerSwitcher() );
-        }
-			
+map.addControl(new OpenLayers.Control.LayerSwitcher() );
+            map.addControl(new OpenLayers.Control.Scale() );
+                
+        }		
             
 
 		// =============== End of Initialization Function ============
