@@ -15,7 +15,7 @@
         var map;
         var gphy, gmap, ghyb, gsat;                    // Google Maps Layers	
         var OSMlayer;                                  // OpenStreetMap Layer
-        var NYCOrtho;
+        var wms;
         
         // =============== Initialization function ===================
         function init(){
@@ -54,7 +54,10 @@
 			//WMS Layer
 			//From
 			http://www.orthos.dhses.ny.gov/arcgis/services/Latest/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities
-			
+			var wms = new OpenLayers.Layer.WMS( "NYC",
+                "http://nyc.freemap.in/cgi-bin/mapserv?MAP=/www/freemap.in/nyc/map/basemap.map", 
+                {layers: "'openspace,water,buildings,roads'", version: '1.3.0', transparen: 'TRUE'
+                {isBaseLayer; true});
 			 
 			 // ================= OSM Map ====================
             OSMlayer = new OpenLayers.Layer.OSM( "Simple OSM Map");
