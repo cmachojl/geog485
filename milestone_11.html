@@ -1,5 +1,3 @@
-
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
@@ -11,6 +9,7 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
+ 	var Layers = new Object();
         
         
 
@@ -24,33 +23,167 @@
 
 			// =========== USGS National Map WMS ====== 
 
-            // from http://basemap.nationalmap.gov/ArcGIS/services/USGSImageryTopo/MapServer/WMSServer?request=GetCapabilities&service=WMS
-			usImagery = new OpenLayers.Layer.WMS( 
+            
+	Layers.usImagery = new OpenLayers.Layer.WMS( 
             	"US Imagery Tile Service - USGS", 
             	"http://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
             	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: true}
             );
-            map.addLayer(usImagery)
+            map.addLayer(Layers.usImagery)
             
+
+          Transportation = new OpenLayers.Layer.WMS( 
+            	"Transportation Layer", 
+            	"http://webservices.nationalatlas.gov/wms/transportation?",
+            	{layers: "amtrak", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(Transportation);
            
-            
+           Energyconsumpind = new OpenLayers.Layer.WMS( 
+            	"Transportation Layer", 
+            	"http://webservices.nationalatlas.gov/wms/people?",
+            	{layers: "etecpb", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(Energyconsumpind);
+	
+            Energyconsumpres = new OpenLayers.Layer.WMS( 
+            	"Transportation Layer", 
+            	"http://webservices.nationalatlas.gov/wms/people?",
+            	{layers: "eterpb", version: '1.3.0', transparent: 'TRUE'},
+            	{isBaseLayer: false, visibility: false}
+            );
+            map.addLayer(Energyconsumpres);
+
+	Layers.localFeatures=new OpenLayers.Layer.Vector ('Energy Consumption - Vector Features');
+	map.addLayer(Layers.localFeatures);
+	
+	myRedPointStyle = {
+    			pointRadius: 12, 
+    			fillColor: "#aa0000",
+    			fillOpacity: .5,
+    			strokeOpacity: .5}
+
+    		myCountiesStyle = {
+    			fillColor: "#dddddd",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#dddddd"}
+
+    		myStatesStyle = {
+    			fillColor: "#0000bb",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#0000bb"}
+
+    		myCitiesStyle = {
+    			fillColor: "#00cc00",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#00cc00"}
+
+    		myBuildingStyle = {
+    			fillColor: "#88bb00",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#88bb00"}
+
+    		myPathStyle = {
+    			strokeOpacity: .8,
+    			strokeColor: "#880088",
+    			strokeWidth: 2}
+
+	var Coord_prospectparkcent = new OpenLayers.Geometry.Point(40.66385,-73.970003);
+    		var Coord_prospectparklake = new OpenLayers.Geometry.Point(40.651219,-73.972063);
+    		var Coord_parkoutside = new OpenLayers.Geometry.LinearRing([
+    			new OpenLayers.Geometry.Point(40.651219,-73.972063),
+     			new OpenLayers.Geometry.Point(40.653042,-73.966742),
+    			new OpenLayers.Geometry.Point(40.655386,-73.960733),
+    			new OpenLayers.Geometry.Point(40.662939,-73.961935),
+    			new OpenLayers.Geometry.Point(40.668017,-73.960733),
+    			new OpenLayers.Geometry.Point(40.672444,-73.966055),
+    			new OpenLayers.Geometry.Point(40.671923,-73.969316),
+		        new OpenLayers.Geometry.Point(40.667757,-73.974638),
+			new OpenLayers.Geometry.Point(40.660986,-73.979616),
 			
+   			]);
+   			var Coord_parkPath = new OpenLayers.Geometry.LineString([
+   				Coord_prospectparklake,
+     			new OpenLayers.Geometry.Point(40.666119,-73.962493)
+			new OpenLayers.Geometry.Point(40.661855,-73.974166),
+			Coord_prospectparkLake   				
+   			])
+		
+		// Corresponding Features
+    		var Point_prospectparkcent = new OpenLayers.Feature.Vector(Coord_prospectparkcent,null,myRedPointStyle);
+    		var Point_prospectparklake = new OpenLayers.Feature.Vector(Coord_prospectparklake);
+    		var LinearRing_parkoutside = new OpenLayers.Feature.Vector(parkoutside, null, myBuildingStyle);
+    		var LineString_parkPath = new OpenLayers.Feature.Vector(Coord_parkPath, null, myPathStyle);
+    		
+    		Layers["localFeatures"].addFeatures([Point_prospectparkcent, Point_prospectparklake, LinearRing_parkoutside, LineString_parkPath]);
+    		
+	
+		// =========== KML Layer Addition ===============
 
-
-            
-// 		WMS ====
-
-            
+	Layers.states = new OpenLayers.Layer.Vector("KML - States", {
+                projection: map.displayProjection,
+                visibility: false,
+                style: myStatesStyle,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "http://kkb-web.s3.amazonaws.com/data/tl_2010_35_state10.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractAttributes: true
+                    })
+                })
+            });
+           	map.addLayer(Layers.states)	
+           		
+			Layers.counties = new OpenLayers.Layer.Vector("KML - Counties", {
+                projection: map.displayProjection,
+                visibility: false,
+                style: myCountiesStyle,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "http://kkb-web.s3.amazonaws.com/data/NMCounties.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractAttributes: true
+                    })
+                })
+            });
+           	map.addLayer(Layers.counties)		
+			            
+			Layers.cities = new OpenLayers.Layer.Vector("KML - Cities", {
+                projection: map.displayProjection,
+                visibility: false,
+                style:  myCitiesStyle,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "http://kkb-web.s3.amazonaws.com/data/NMCities.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractAttributes: true
+                    })
+                })
+            });
+           	map.addLayer(Layers.cities)		
+			            
+			            
 			
 			map.setCenter(
                 new OpenLayers.LonLat(lon, lat), zoom
             );
 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
-            map.addControl(new OpenLayers.Control.Scale() );
-                
+            map.addControl(new OpenLayers.Control.MousePosition() );
+               
         }
+
+
+
+	
+            
         // =============== End of Initialization Function ============
         
 	</script>
@@ -67,3 +200,6 @@
 	
   </body>
 </html>
+
+
+
