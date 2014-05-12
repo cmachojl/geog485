@@ -32,12 +32,22 @@
             );
             map.addLayer(usImagery)
             
+            //Styles
+            
+            myStatesStyle = {
+    			fillColor: "#0000ff",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#0000ff"}
+         
+            
 			
 
 // =========== KML Layer Addition ===============
 	       layers.hospitals = new OpenLayers.Layer.Vector("KML - Hospitals", {
                 projection: map.displayProjection,
                 visibility: false,
+                style: myStatesStyle
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
                     url: "https://github.com/cmachojl/geog485/blob/gh-pages/brooklynhospitals.kml",
@@ -46,7 +56,7 @@
                     })
                 })
             });
-           	map.addLayer(Layers.hospitals)	
+           	map.addLayer(layers.hospitals)	
             
            
             
