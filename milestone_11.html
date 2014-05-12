@@ -9,7 +9,7 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
- 	var Layers = new Object();
+        var Layers = new Object();
  	
         
 
@@ -18,7 +18,7 @@
              
             map = new OpenLayers.Map('map',
                 {
-            		numZoomLevels: 20
+            		numZoomLevels: 12
                 });
             
             
@@ -32,21 +32,14 @@
             	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: true}
             );
-            map.addLayer(Layers.usImagery);
+            map.addLayer(Layers.usImagery)
             
-
-  
-
-
-
-			            
-			
-		
-           
-
-            map.addControl(new OpenLayers.Control.LayerSwitcher() );
-            map.addControl(new OpenLayers.Control.MousePosition() );
-               
+ 		map.setCenter(
+ 			new OpenLaters.LonLat(lon, lat), zoom
+ 			);
+ 		map.addControl(new OpenLayers.Control.LayerSwitcher() );
+ 		map.addControl(new OpenLayers.Control.MousePosition() );
+  		
         }
 
 
