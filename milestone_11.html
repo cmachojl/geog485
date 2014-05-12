@@ -37,21 +37,7 @@
             
 			
 
-// =========== KML Layer Addition ===============
-	       layers.hospitals = new OpenLayers.Layer.Vector("KML - Hospitals", {
-                projection: map.displayProjection,
-                visibility: false,
-                strategies: [new OpenLayers.Strategy.Fixed()],
-                protocol: new OpenLayers.Protocol.HTTP({
-                    url: "http://cmachojl.github.io/geog485/brooklynhospitals.kml",
-                    format: new OpenLayers.Format.KML({
-                        extractAttributes: true
-                    })
-                })
-            });
-           	map.addLayer(layers.hospitals)	
-            
-           
+
             
 // 		WMS ====
 
