@@ -11,6 +11,7 @@
         var zoom = 12;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
+        var layers.hospitals
         
 
         // =============== Initialization function ===================
@@ -32,14 +33,7 @@
             );
             map.addLayer(usImagery)
             
-            //Styles
-            
-            myStatesStyle = {
-    			fillColor: "#0000ff",
-    			fillOpacity: .2,
-    			strokeOpacity: .5,
-    			strokeColor: "#0000ff"}
-         
+           
             
 			
 
@@ -47,7 +41,6 @@
 	       layers.hospitals = new OpenLayers.Layer.Vector("KML - Hospitals", {
                 projection: map.displayProjection,
                 visibility: false,
-                style: myStatesStyle
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
                     url: "https://github.com/cmachojl/geog485/blob/gh-pages/brooklynhospitals.kml",
