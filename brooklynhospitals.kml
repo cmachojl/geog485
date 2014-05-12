@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Brooklyn Hospital Community Family Health Centers</name>
+  <description><![CDATA[]]></description>
+  <Style id="style2">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/blue-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style3">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/red-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style5">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/green-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style4">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/purple-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>The Brooklyn Hospital Center Ambulatory (Outpatient) Care Center</name>
+    <description><![CDATA[<div dir="ltr"><br></div>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-73.977448,40.689800,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Brooklyn Hospital 8th Avenue Family Health Center</name>
+    <description><![CDATA[<a href="/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=5909+8th+Avenue%09Brooklyn%09NY%0911220&amp;vps=4&amp;jsv=166d&amp;sll=56.072035,-103.007812&amp;sspn=37.563943,110.654297&amp;ie=UTF8&amp;ei=TPxkSqSOBJuuMvT7lfsL&amp;sig2=qbg1toELDU8nOTIK-yjlOQ&amp;dtab=5" target="_blank"><img src="http://cbk0.google.com/cbk?output=thumbnail&amp;w=90&amp;h=68&amp;ll=40.636011,-74.008989"></a>]]></description>
+    <styleUrl>#style3</styleUrl>
+    <Point>
+      <coordinates>-74.008987,40.636009,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>La Providencia Family Medicine Center</name>
+    <description><![CDATA[<a href="/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=1280+DeKalb+Avenue,+Brooklyn,+NY+11221&amp;vps=5&amp;jsv=166d&amp;sll=40.111689,-95.712891&amp;sspn=49.969228,110.654297&amp;ie=UTF8&amp;ei=2vxkSumENoawNr3diIUM&amp;sig2=Wlfe07DLyToYrRNGtIVPJw&amp;dtab=5" target="_blank"><img src="http://cbk0.google.com/cbk?output=thumbnail&amp;w=90&amp;h=68&amp;ll=40.697226,-73.926186"></a>]]></description>
+    <styleUrl>#style5</styleUrl>
+    <Point>
+      <coordinates>-73.926186,40.697227,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Manhattan Family Health Center</name>
+    <description><![CDATA[<br>]]></description>
+    <styleUrl>#style4</styleUrl>
+    <Point>
+      <coordinates>-73.954536,40.731998,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Williamsburg Family Health Center</name>
+    <description><![CDATA[<a href="/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=99+Division+Avenue,+Brooklyn,+NY+11211&amp;vps=7&amp;jsv=166d&amp;sll=48.166085,-95.712891&amp;sspn=44.23188,110.654297&amp;ie=UTF8&amp;ei=Qv1kSpz8D4eqNoSD7fYL&amp;sig2=iAqCctYcVoFtSfbnS6rPHA&amp;dtab=5" target="_blank"><img src="http://cbk0.google.com/cbk?output=thumbnail&amp;w=90&amp;h=68&amp;ll=40.707503,-73.964714"></a>]]></description>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>-73.964714,40.707504,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>
