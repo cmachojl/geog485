@@ -33,34 +33,12 @@
             map.addLayer(Layers.usImagery)
             
 
-          Layers.Transportation = new OpenLayers.Layers.WMS( 
-            	"Transportation Layer", 
-            	"http://webservices.nationalatlas.gov/wms/transportation?",
-            	{layers: "amtrak", version: '1.3.0', transparent: 'TRUE'},
-            	{isBaseLayer: false, visibility: false}
-            );
-            map.addLayer(Layers.Transportation);
-           
-           Layers.Energyconsumpind = new OpenLayers.Layers.WMS( 
-            	"Transportation Layer", 
-            	"http://webservices.nationalatlas.gov/wms/people?",
-            	{layers: "etecpb", version: '1.3.0', transparent: 'TRUE'},
-            	{isBaseLayer: false, visibility: false}
-            );
-            map.addLayer(Layers.Energyconsumpind);
-	
-            Layers.Energyconsumpres = new OpenLayers.Layers.WMS( 
-            	"Transportation Layer", 
-            	"http://webservices.nationalatlas.gov/wms/people?",
-            	{layers: "eterpb", version: '1.3.0', transparent: 'TRUE'},
-            	{isBaseLayer: false, visibility: false}
-            );
-            map.addLayer(Layers.Energyconsumpres);
+  
 
 //vector
-	Layers.localFeatures=new OpenLayers.Layer.Vector ('Energy Consumption - Vector Features');
+	Layers.localFeatures=new OpenLayers.Layer.Vector ('Prospect Park Brooklyn, New York');
 	map.addLayer(Layers.localFeatures);
-	
+	//Styles
 	myRedPointStyle = {
     			pointRadius: 12, 
     			fillColor: "#aa0000",
