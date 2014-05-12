@@ -10,8 +10,7 @@
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
  	var Layers = new Object();
- 	var Transportation, amtrak, etecpb, eterb
-        
+ 	
         
 
         // =============== Initialization function ===================
@@ -34,30 +33,31 @@
             map.addLayer(Layers.usImagery)
             
 
-          Transportation = new OpenLayers.Layer.WMS( 
+          Layers.Transportation = new OpenLayers.Layers.WMS( 
             	"Transportation Layer", 
             	"http://webservices.nationalatlas.gov/wms/transportation?",
             	{layers: "amtrak", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: false, visibility: false}
             );
-            map.addLayer(Transportation);
+            map.addLayer(Layers.Transportation);
            
-           Energyconsumpind = new OpenLayers.Layer.WMS( 
+           Layers.Energyconsumpind = new OpenLayers.Layers.WMS( 
             	"Transportation Layer", 
             	"http://webservices.nationalatlas.gov/wms/people?",
             	{layers: "etecpb", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: false, visibility: false}
             );
-            map.addLayer(Energyconsumpind);
+            map.addLayer(Layers.Energyconsumpind);
 	
-            Energyconsumpres = new OpenLayers.Layer.WMS( 
+            Layers.Energyconsumpres = new OpenLayers.Layers.WMS( 
             	"Transportation Layer", 
             	"http://webservices.nationalatlas.gov/wms/people?",
             	{layers: "eterpb", version: '1.3.0', transparent: 'TRUE'},
             	{isBaseLayer: false, visibility: false}
             );
-            map.addLayer(Energyconsumpres);
+            map.addLayer(Layers.Energyconsumpres);
 
+//vector
 	Layers.localFeatures=new OpenLayers.Layer.Vector ('Energy Consumption - Vector Features');
 	map.addLayer(Layers.localFeatures);
 	
