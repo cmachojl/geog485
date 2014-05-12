@@ -17,8 +17,10 @@
         function init(){
              
             map = new OpenLayers.Map('map',
-            	{projection:myProjection}
-            );
+                {
+            		numZoomLevels: 20
+                });
+            
             
 
 			// =========== USGS National Map WMS ====== 
@@ -36,7 +38,7 @@
   
 
 //vector
-	Layers.localFeatures=new OpenLayers.Layer.Vector ('Prospect Park Brooklyn, New York');
+	Layers.localFeatures = new OpenLayers.Layer.Vector ('Prospect Park Brooklyn, New York');
 	map.addLayer(Layers.localFeatures);
 	//Styles
 	myRedPointStyle = {
@@ -88,7 +90,7 @@
 			new OpenLayers.Geometry.Point(40.660986,-73.979616),
 			]);
    			var Coord_parkPath = new OpenLayers.Geometry.LineString([
-   				Coord_prospectparklake,
+   				Coord_prospectparkcent,
      			new OpenLayers.Geometry.Point(40.666119,-73.962493)
 			new OpenLayers.Geometry.Point(40.661855,-73.974166),
 			Coord_prospectparkLake   				
@@ -108,9 +110,8 @@
 
 			            
 			
-			map.setCenter(
-                new OpenLayers.LonLat(lon, lat), zoom
-            );
+		
+           
 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
             map.addControl(new OpenLayers.Control.MousePosition() );
