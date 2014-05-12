@@ -34,7 +34,19 @@
             
 			
 
-	
+// =========== KML Layer Addition ===============
+	       layers.hospitals = new OpenLayers.Layer.Vector("KML - Hospitals", {
+                projection: map.displayProjection,
+                visibility: false,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0CDsQFjAD&url=http%3A%2F%2Fmaps.google.com%2Fmaps%2Fms%3Fie%3DUTF8%26oe%3DUTF8%26msa%3D0%26msid%3D114420135472669676247.0004703ecf633d0c344ba&ei=Fw5wU4uQIsXtoAS7kIGQDg&usg=AFQjCNF376Wjr8KNx2bxtimPj634gfmTTw&bvm=bv.66330100,d.cGU",
+                    format: new OpenLayers.Format.KML({
+                        extractAttributes: true
+                    })
+                })
+            });
+           	map.addLayer(Layers.hospitals)	
             
            
             
