@@ -119,19 +119,19 @@ new OpenLayers.Geometry.Point(-73.974209, 40.669449),
 			
 			
 			// =========== KML Layer Addition ===============
-			Layers.states = new OpenLayers.Layer.Vector("KML - States", {
+			Layers.hospitals = new OpenLayers.Layer.Vector("KML - hospitals", {
                 projection: map.displayProjection,
                 visibility: false,
                 style: myStatesStyle,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: "http://kkb-web.s3.amazonaws.com/data/tl_2010_35_state10.kml",
+                    url: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&frm=1&source=web&cd=2&cad=rja&uact=8&ved=0CDAQFjAB&url=https%3A%2F%2Fmaps.google.com%2Fmaps%2Fms%3Ff%3Dq%26source%3Ds_q%26hl%3Den%26geocode%3D%26mrt%3Dall%26ie%3DUTF8%26msa%3D0%26output%3Dkml%26msid%3D212475520112451542298.00046f295a02e7c2b3c7c&ei=JTFxU4-dL6m_sQSQroLIAg&usg=AF",
                     format: new OpenLayers.Format.KML({
                         extractAttributes: true
                     })
                 })
             });
-           	map.addLayer(Layers.states)	
+           	map.addLayer(Layers.hospitals)	
            		
 			Layers.counties = new OpenLayers.Layer.Vector("KML - Counties", {
                 projection: map.displayProjection,
