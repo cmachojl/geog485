@@ -6,14 +6,17 @@
         // define global variables
         var lon = -106.609991;
         var lat = 35.110703;
-        var zoom = 20000000000000000000000000000000000000000000000;
+        var zoom = 14;
         var map;
         
 
         // =============== Initialization function ===================
         function init(){
              
-            map = new OpenLayers.Map('map');
+            map = new OpenLayers.Map('map',
+        {     
+        	numZoomLevels: 20
+        });
             	
             
             
