@@ -24,8 +24,8 @@
         var lon = -73.977170;
         var lat = 40.644992;
         var zoom = 12;
-        var map, select;
-	var hospitals;
+        var map, select, hospitals;
+	
 
         function init(){
             map = new OpenLayers.Map('map');
@@ -52,14 +52,14 @@
             
             select = new OpenLayers.Control.SelectFeature(hospitals);
             
-            sundials.events.on({
+            hospitals.events.on({
                 "featureselected": onFeatureSelect,
                 "featureunselected": onFeatureUnselect
             });
 
             map.addControl(select);
             select.activate();   
-            map.zoomToExtent(new OpenLayers.Bounds(68.774414,11.381836,123.662109,34.628906));
+           
         }
         function onPopupClose(evt) {
             select.unselectAll();
