@@ -6,17 +6,16 @@
         // define global variables
         var lon = -106.609991;
         var lat = 35.110703;
-        var zoom = 50000000000;
-        var myProjection = new OpenLayers.Projection("EPSG:4326")
+        var zoom = 20;
         var map;
         
 
         // =============== Initialization function ===================
         function init(){
              
-            map = new OpenLayers.Map('map',
-            	{projection:myProjection}
-            );
+            map = new OpenLayers.Map('map');
+            	
+            
             
 
 			// =========== USGS National Map WMS ====== 
