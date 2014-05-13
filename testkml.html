@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>OpenLayers: Sundials on a Spherical Mercator Map</title>
+    <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
     <link rel="stylesheet" href="../theme/default/style.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css">
 
@@ -21,66 +23,63 @@
     </style>
     <script src="../OpenLayers.js"></script>
     <script type="text/javascript">
-        var lon = -73.977170;
-        var lat = 40.644992;
-        var zoom = 12;
+        var lon = -73.968694;
+        var lat = 40.664433;
+        var zoom = 14;
         var map, select;
-        
-	
 
         function init(){
-            map = new OpenLayers.Map('map');
-
-            Layers.usImagery = new OpenLayers.Layer.WMS( 
-            	"US Imagery Tile Service - USGS", 
-            	"http://basemap.nationalmap.gov/arcgis/services/USGSImageryTopo/MapServer/WmsServer?",
-            	{layers: "0", version: '1.3.0', transparent: 'TRUE'},
-            	{isBaseLayer: true}
-            );
-            map.addLayer(Layers.usImagery)
-
-
-            var hosptials = new OpenLayers.Layer.Vector("KML", {
+            var options = {
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            };
+            map = new OpenLayers.Map('map', options);
+            var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+            var gmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
+            var hospitals = new OpenLayers.Layer.Vector("KML", {
                 projection: map.displayProjection,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&frm=1&source=web&cd=2&cad=rja&uact=8&ved=0CDAQFjAB&url=https%3A%2F%2Fmaps.google.com%2Fmaps%2Fms%3Ff%3Dq%26source%3Ds_q%26hl%3Den%26geocode%3D%26mrt%3Dall%26ie%3DUTF8%26msa%3D0%26output%3Dkml%26msid%3D212475520112451542298.00046f295a02e7c2b3c7c&ei=JTFxU4-dL6m_sQSQroLIAg&usg=AF",
+                    url: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&frm=1&source=web&cd=2&cad=rja&uact=8&ved=0CDAQFjAB&url=https%3A%2F%2Fmaps.google.com%2Fmaps%2Fms%3Ff%3Dq%26source%3Ds_q%26hl%3Den%26geocode%3D%26mrt%3Dall%26ie%3DUTF8%26msa%3D0%26output%3Dkml%26msid%3D212475520112451542298.00046f295a02e7c2b3c7c&ei=JTFxU4-dL6m_sQSQroLIAg&usg=AFQjCNFcyGAF5rR-7DAGXGKWTyOYwgUENw&sig2=nzfI8zuKZWM1ROjubNU8lg&bvm=bv.66330100,d.cWc",
                     format: new OpenLayers.Format.KML({
                         extractStyles: true,
                         extractAttributes: true
                     })
                 })
             });
-            
-            map.addLayers(hospitals);
-            
+
+            map.addLayers([mapnik, gmap, hospitals]);
+
             select = new OpenLayers.Control.SelectFeature(hospitals);
             
-            hospitals.events.on({
+            sundials.events.on({
                 "featureselected": onFeatureSelect,
                 "featureunselected": onFeatureUnselect
             });
-
+  
             map.addControl(select);
             select.activate();   
-           
+
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+            map.zoomToExtent(
+                new OpenLayers.Bounds(
+                    68.774414, 11.381836, 123.662109, 34.628906
+                ).transform(map.displayProjection, map.projection)
+            );
         }
         function onPopupClose(evt) {
             select.unselectAll();
         }
         function onFeatureSelect(event) {
             var feature = event.feature;
-            // Since KML is user-generated, do naive protection against
-            // Javascript.
-            var content = "<h2>"+feature.attributes.name + "</h2>" + feature.attributes.description;
-            if (content.search("<script") != -1) {
-                content = "Content contained Javascript! Escaped content below.<br>" + content.replace(/</g, "&lt;");
-            }
-            popup = new OpenLayers.Popup.FramedCloud("chicken", 
-                                     feature.geometry.getBounds().getCenterLonLat(),
-                                     new OpenLayers.Size(100,100),
-                                     content,
-                                     null, true, onPopupClose);
+            var selectedFeature = feature;
+            var popup = new OpenLayers.Popup.FramedCloud("chicken", 
+                feature.geometry.getBounds().getCenterLonLat(),
+                new OpenLayers.Size(100,100),
+                "<h2>"+feature.attributes.name + "</h2>" + feature.attributes.description,
+                null, true, onPopupClose
+            );
             feature.popup = popup;
             map.addPopup(popup);
         }
@@ -95,14 +94,14 @@
     </script>
   </head>
   <body onload="init()">
-      <h1 id="title">KML Layer Example</h1>
+      <h1 id="title">OSM + Google Maps + KML Reprojection</h1>
 
       <div id="tags">
-          kml, popup, feature
+          osm, kml, spherical, mercator, reprojection, feature, popup, advanced
       </div>
 
       <p id="shortdesc">
-          Demonstrates loading and displaying a KML file on top of a basemap.
+          Demonstrates loading and displaying a KML file on top of OpenStreetMap (OSM) and Google Maps data. Loads data from a KML file of sundials.
     </p>
 
     <div id="map" class="smallmap"></div>
@@ -110,3 +109,4 @@
     <div id="docs"></div>
   </body>
 </html>
+
