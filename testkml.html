@@ -28,10 +28,8 @@
         var zoom = 14;
         var map, select;
 
-        function init(){
-            var options = {
-                projection: new OpenLayers.Projection("EPSG:900913"),
-                displayProjection: new OpenLayers.Projection("EPSG:4326")
+        function init()
+            
             };
             map = new OpenLayers.Map('map', options);
             var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
