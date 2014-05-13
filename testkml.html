@@ -22,8 +22,8 @@
     </style>
     <script src="../OpenLayers.js"></script>
     <script type="text/javascript">
-        var lon = -73.968694;
-        var lat = 40.664433;
+        var lon = -73;
+        var lat = 40;
         var zoom = 14;
         var map, select;
 
@@ -59,10 +59,7 @@
                 "featureunselected": onFeatureUnselect
             });
 
-            map.addControl(select);
-            select.activate();   
-            map.zoomToExtent(new OpenLayers.Bounds(68.774414,11.381836,123.662109,34.628906));
-        }
+          
         function onPopupClose(evt) {
             select.unselectAll();
         }
