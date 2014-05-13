@@ -6,7 +6,7 @@
         // define global variables
         var lon = -106.609991;
         var lat = 35.110703;
-        var zoom = 20;
+        var zoom = 20000000000000000000000000000000000000000000000;
         var map;
         
 
@@ -29,8 +29,7 @@
             );
             map.addLayer(finallayers)
             
-            map.setCenter(
-                new OpenLayers.LonLat(lon, lat), zoom
+            map.setCenter(new OpenLayers.LonLat(lon, lat), zoom
             );
 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
