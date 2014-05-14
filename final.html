@@ -29,7 +29,7 @@
 	  layer1 = new OpenLayers.Layer.WMS( 
             	"Tiger layer - Geo Server", 
             	"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?",
-            	{layers: "tgr2006se_bern_lka", version: '1.1.1'},
+            	{layers: "tgr2006se_bern_lka", version: '1.1.1', transparent: true},
             	{isBaseLayer: false}
             );
             map.addLayer(layer1)
