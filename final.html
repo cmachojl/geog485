@@ -42,7 +42,7 @@
             
              layer3 = new OpenLayers.Layer.WMS( 
             	"35106-A6_CONT - Geo Server", 
-            	"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?",
+            	"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:4326&BBOX=-106.62786244703939,34.9981974563469,-106.49728109472731,35.12703595753754",
             	{layers: "35106-A6_CONT", version: '1.1.1', transparent: true},
             	{isBaseLayer: false}
             	 );
@@ -50,7 +50,7 @@
            
             layer4 = new OpenLayers.Layer.WMS( 
             	"35106-A6 - Geo Server", 
-            	"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?",
+            	"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:4326&BBOX=-106.62786244703939,34.9981974563469,-106.49728109472731,35.12703595753754",
             	{layers: "35106-A6,35106-A5", version: '1.1.1', transparent: true},
             	{isBaseLayer: true}
             );
