@@ -30,6 +30,18 @@
             	{isBaseLayer: true}
             );
             map.addLayer(Layers.usImagery)
+            
+            
+	     layer2 = new OpenLayers.Layer.WMS(
+            	"New York Layers",
+		"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?", 
+				{
+					layers:'nybb,nyhez,nynta',
+					transparent:'True'
+				}, 
+				{
+				    isBaseLayer: false
+				});
 
 
 			// =========== Create and add a Vector layer to the map that that will contain the created features ====
@@ -45,6 +57,9 @@
 			map.setCenter(
                 new OpenLayers.LonLat(lon, lat), zoom
             );
+            
+                        map.addLayer(layer1);
+			map.addLayer(layer2);
 
             map.addControl(new OpenLayers.Control.LayerSwitcher() );
             map.addControl(new OpenLayers.Control.MousePosition() );
