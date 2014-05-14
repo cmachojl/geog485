@@ -33,14 +33,36 @@
             
             
 	     layer2 = new OpenLayers.Layer.WMS(
-            	"New York Layers",
-		"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?", 
-				{layers:'nybb,nyhez,nynta',transparent:'True'
+            	"Burough Boundary",
+		"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?wms?VERSION=1.1.1&REQUEST=GetMap&STYLE=buroghbound", 
+				{layers:'nybb',transparent:'True'
 				}, 
 				{
 				    isBaseLayer: false
 				});
            map.addLayer(layer2)
+           
+             
+	     layer3 = new OpenLayers.Layer.WMS(
+            	"Hurricane Evacuation Zones",
+		"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?wms?VERSION=1.1.1&REQUEST=GetMap&STYLE=hurevaczones", 
+				{layers:'nyhez',transparent:'True'
+				}, 
+				{
+				    isBaseLayer: false
+				});
+           map.addLayer(layer3)
+           
+             
+	     layer4 = new OpenLayers.Layer.WMS(
+            	"Burough Neighborhoods",
+		"http://geog485.unm.edu:8080/geoserver/s_camachoj/wms?VERSION=1.1.1&REQUEST=GetMap&STYLE=N3", 
+				{layers:'nynta',transparent:'True'
+				}, 
+				{
+				    isBaseLayer: false
+				});
+           map.addLayer(layer4)
 
 			// =========== Create and add a Vector layer to the map that that will contain the created features ====
     		Layers.localFeatures = new OpenLayers.Layer.Vector('My Local Features');
