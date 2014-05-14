@@ -9,7 +9,9 @@
         var zoom = 14;
         var myProjection = new OpenLayers.Projection("EPSG:4326")
         var map;
-   
+        var Layers = new Object();
+        var bmngLayer, countiesLayer, indlandLayer, federallandsLayer;
+
         // =============== Initialization function ===================
         function init(){
              
@@ -30,8 +32,106 @@
             map.addLayer(Layers.usImagery)
 
 
+			// =========== Create and add a Vector layer to the map that that will contain the created features ====
+    		Layers.localFeatures = new OpenLayers.Layer.Vector('My Local Features');
+    		map.addLayer(Layers.localFeatures);
+
+			
+			// =========== Create Some Styles ==============
+			// Define some Styles
+    		myRedPointStyle = {
+    			pointRadius: 12, 
+    			fillColor: "#0000FF",
+    			fillOpacity: .5,
+    			strokeOpacity: .5}
+
+    		myCountiesStyle = {
+    			fillColor: "#C0C0C0",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#C0C0C0"}
+
+    		myStatesStyle = {
+    			fillColor: "#00FF00",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#00FF00"}
+
+    		myCitiesStyle = {
+    			fillColor: "#FFFFFF",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#FFFFFF"}
+
+    		myBuildingStyle = {
+    			fillColor: "#00FF00",
+    			fillOpacity: .2,
+    			strokeOpacity: .5,
+    			strokeColor: "#00ff00"}
+
+    		myPathStyle = {
+    			strokeOpacity: .8,
+    			strokeColor: "#FF0000",
+    			strokeWidth: 2}
 
 
+			// =========== Create Some Geometries & Features ==============
+
+			// Key Coordinates (Geometries)
+			var Coord_prospectparkcent = new OpenLayers.Geometry.Point(-73.974338, 40.661666);
+    		var Coord_prospectparklake = new OpenLayers.Geometry.Point(-73.970561, 40.654503);
+    		var Coord_parkoutside = new OpenLayers.Geometry.LinearRing([
+    		new OpenLayers.Geometry.Point(-73.970604, 40.672379),
+new OpenLayers.Geometry.Point(-73.968973, 40.67329),
+new OpenLayers.Geometry.Point(-73.963995, 40.672574),
+new OpenLayers.Geometry.Point(-73.96451, 40.670426),
+new OpenLayers.Geometry.Point(-73.960819,40.669645),
+new OpenLayers.Geometry.Point(-73.961592, 40.666845),
+new OpenLayers.Geometry.Point(-73.960991, 40.665348),
+new OpenLayers.Geometry.Point(-73.961506, 40.662483),
+new OpenLayers.Geometry.Point(-73.961763, 40.66027),
+new OpenLayers.Geometry.Point(-73.96142, 40.657535),
+new OpenLayers.Geometry.Point(-73.962021, 40.653302),
+new OpenLayers.Geometry.Point(-73.963909, 40.652847),
+new OpenLayers.Geometry.Point(-73.966742, 40.649395),
+new OpenLayers.Geometry.Point(-73.970861, 40.648288),
+new OpenLayers.Geometry.Point(-73.973179, 40.65187),
+new OpenLayers.Geometry.Point(-73.974209, 40.655712),
+new OpenLayers.Geometry.Point(-73.980818, 40.660856),
+new OpenLayers.Geometry.Point(-73.974209, 40.669449),
+
+ 			]);
+   			var Coord_parkPath= new OpenLayers.Geometry.LineString([
+   				Coord_prospectparkcent,
+     			new OpenLayers.Geometry.Point(-73.962493, 40.66119),
+		 	new OpenLayers.Geometry.Point(-73.974166, 40.661855),
+     			Coord_prospectparkcent  				
+   			])
+    		
+    		// Corresponding Features
+    		var Point_prospectparkcent = new OpenLayers.Feature.Vector(Coord_prospectparkcent,null,myRedPointStyle);
+    		var Point_prospectparklake = new OpenLayers.Feature.Vector(Coord_prospectparklake);
+    		var LinearRing_parkoutside = new OpenLayers.Feature.Vector(Coord_parkoutside, null, myBuildingStyle);
+    		var LineString_parkPath = new OpenLayers.Feature.Vector(Coord_parkPath, null, myPathStyle);
+    		
+    		Layers["localFeatures"].addFeatures([Point_prospectparkcent, Point_prospectparklake, LinearRing_parkoutside, LineString_parkPath]);
+    		
+			
+			
+			// =========== KML Layer Addition ===============
+			Layers.hospitals = new OpenLayers.Layer.Vector("KML - hospitals", {
+                projection: map.displayProjection,
+                visibility: false,
+                style: myRedPointStyle,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&frm=1&source=web&cd=2&cad=rja&uact=8&ved=0CDAQFjAB&url=https%3A%2F%2Fmaps.google.com%2Fmaps%2Fms%3Ff%3Dq%26source%3Ds_q%26hl%3Den%26geocode%3D%26mrt%3Dall%26ie%3DUTF8%26msa%3D0%26output%3Dkml%26msid%3D212475520112451542298.00046f295a02e7c2b3c7c&ei=JTFxU4-dL6m_sQSQroLIAg&usg=AF",
+                    format: new OpenLayers.Format.KML({
+                        extractAttributes: true
+                    })
+                })
+            });
+           	map.addLayer(Layers.hospitals)	
            		
 
 			            
@@ -65,22 +165,15 @@
 			background-color: rgba(189,192,191,0.5);
 			bottom: 5px !important}
 	</style>
-
-	</style>
   </head>
   <body onload="init()">
-    <h1>Milestone 11</h1>
+    <h1>Milestone 15</h1>
     <h3>Jessica Camacho</h3>
-    <h2> Brooklyn, New York: Prospect Park</h2>
-    <p>This is a map of Brooklyn, New York. 
-    <p>I used vector styling to outline Prospect Park.</p>
-    <p>The blue dot are baseball fields
-    <p>The red line is a path from the baseball fields to the Brooklyn Botanical Gardens.</p>
-    <p>The yellow dot is Prospect Park Lake.</p>
+    <h2> Brooklyn, New York</h2>
+ 
 	
 	<!-- Map DIV -->
 	<div id="map"></div>
 	
   </body>
 </html>
-
